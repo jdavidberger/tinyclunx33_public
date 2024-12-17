@@ -247,7 +247,7 @@ class MainSoC(ZephyrSoC, SoCCore):
         "bus_interconnect":"crossbar",
         "bus_bursting": True,
         "integrated_sram_size": 0x0, # Replaced with the NXLRAM
-        "cpu_reset_address": 0x2010_0000,
+        "cpu_reset_address": 0x2020_0000,
         "irq_n_irqs": 16,
         "uart_baudrate": 115200,
     }
@@ -262,7 +262,7 @@ class MainSoC(ZephyrSoC, SoCCore):
         SoCCore.__init__(self, self.platform, sys_clk_freq, **self.soc_kwargs)
         ZephyrSoC.__init__(self, **self.soc_kwargs)
 
-        self.add_i2c()
+        #self.add_i2c()
         
         # Note: can change to DDR by setting rate="1:2", will need some changes to suport this."
         self.add_spi_flash(mode="4x", module=Flash(default_read_cmd=Codes.READ_1_1_4), clk_freq=sys_clk_freq, rate="1:1", with_master=False)

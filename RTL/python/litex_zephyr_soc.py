@@ -25,7 +25,7 @@ class ZephyrSoC:
 
         self.mem_map.update(
             rom         = 0x00000000,
-            sram        = 0x01000000,
+            sram        = 0x01000000,        
             spiflash    = 0x20000000,
             main_ram    = 0x40000000,
             ethmac      = 0xb0000000,

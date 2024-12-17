@@ -72,16 +72,13 @@ module fpga_top_som_no_mipi (
   assign reset = ~reset_n;
 
   // A PLL generates various frequencies for the design:
-  wire pll_lock, clk_60m, clk_os2, pixel_clk, camera_mclk, tx_clk, tx_clk_90, byte_clk;
-  main_pll u_main_pll (
+  wire pll_lock, clk_60m, clk_80m, pixel_clk, camera_mclk, tx_clk, tx_clk_90, byte_clk;
+  TinyClunx_Rev1_baseboard_pll u_main_pll (
     .clki_i  (clk_2    ),
     .rstn_i  (reset_n  ),
     .clkop_o (clk_60m  ), // 60 MHz
-    .clkos_o (pixel_clk), // 100 MHz
-    .clkos2_o(clk_os2 ), // 80 MHz
-    .clkos3_o(byte_clk ), // 50 MHz
-    .clkos4_o(tx_clk   ), // 200 MHz
-    .clkos5_o(tx_clk_90), // 200 MHz
+    .clkos_o (clk_80m), // 80 MHz
+    .clkos2_o(pixel_clk ), // 125 MHz
     .lock_o  (pll_lock )
   );
 
@@ -99,7 +96,7 @@ module fpga_top_som_no_mipi (
   defparam i_dcs.DCSMODE = "DCS";
   DCS i_dcs (
     .CLK0    (hf_clk  ),
-    .CLK1    (clk_os2 ),
+    .CLK1    (clk_80m ),
     .SEL     (pll_lock),
     .SELFORCE('0      ),
     .DCSOUT  (proc_clk )

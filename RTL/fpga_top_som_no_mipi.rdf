@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RadiantProject version="4.2" radiant="2023.2.1.288.0" title="fpga_top_som" device="LIFCL-33U-7CTG104C" performance_grade="7_High-Performance_1.0V" default_implementation="impl_no_mipi">
     <Options/>
-    <Implementation title="impl_no_mipi" dir="impl_no_mipi" description="impl_no_mipi" synthesis="lse" default_strategy="Strategy1">
-        <Options def_top="fpga_top_som_no_mipi">
+    <Implementation title="impl_no_mipi" dir="impl_no_mipi" description="impl_no_mipi" synthesis="synplify" default_strategy="Strategy1">
+        <Options VerilogStandard="System Verilog" def_top="fpga_top_som_no_mipi">
             <Option name="include path" value="ip/wb_common;src"/>
             <Option name="top" value="fpga_top_som_no_mipi"/>
         </Options>
-        <Source name="src/VexRiscv.v" type="Verilog" type_short="Verilog">
+        <Source name="src/VexRiscv.v" type="Verilog" type_short="Verilog" excluded="TRUE">
             <Options/>
         </Source>
         <Source name="src/som.v" type="Verilog" type_short="Verilog">
@@ -70,6 +70,12 @@
             <Options VerilogStandard="System Verilog"/>
         </Source>
         <Source name="src/TinyClunx_no_usb.v" type="Verilog" type_short="Verilog">
+            <Options/>
+        </Source>
+        <Source name="litex/pythondata-cpu-vexriscv/pythondata_cpu_vexriscv/verilog/VexRiscv_LiteJTag.v" type="Verilog" type_short="Verilog" syn_sim="SynOnly">
+            <Options/>
+        </Source>
+        <Source name="../../tinyclunx33_internal/spinal/hw/gen/TinyClunx_Rev1_baseboard_pll.v" type="Verilog" type_short="Verilog">
             <Options/>
         </Source>
         <Source name="fpga_top_som.xcf" type="Programming Project File" type_short="Programming">
